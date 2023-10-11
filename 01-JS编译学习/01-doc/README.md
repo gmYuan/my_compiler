@@ -1,7 +1,24 @@
+## 思维导图
 
-1 在线参考文档：
+1 需求分析==> 2 编译器工作流
+  - 2.1 解析==> 词法分析 + 语法分析 
 
-http://www.zhufengpeixun.com/strong/html/103.15.webpack-compiler2.html#t105.%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90
+
+2.1.1 词法分析
+  - 具体代码，见 [词法分析例1](./01-doc/02-词法分析-tokenizer.js)
+
+
+
+## 参考文档：
+
+[在线文档](http://www.zhufengpeixun.com/strong/html/103.15.webpack-compiler2.html#t105.%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90)
+
+
+
+
+
+
+
 
 
 2 语法分析：优先级规则
