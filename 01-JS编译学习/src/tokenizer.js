@@ -5,6 +5,7 @@ let tokens = [];
 
 function tokenizer(input) {
   let state = start; //刚开始处于开始状态
+  // debugger
   for (let char of input) {
     //遍历或者说循环所有的字符
     if (state) state = state(char);
@@ -13,8 +14,9 @@ function tokenizer(input) {
 }
 
 let sourceCode = '<h1 id="title"><span>hello</span>world</h1>';
-console.log(tokenizer(sourceCode));
+console.log('tokenizer结果是-----------', tokenizer(sourceCode));
 
+// 开始状态
 function start(char) {
   if (char === "<") {
     emit({ type: tokenTypes.LeftParentheses, value: "<" });

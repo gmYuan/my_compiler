@@ -63,8 +63,3 @@ function emit(token) {
   currentToken = { type: "", value: "" };
   tokens.push(token);
 }
-
-
-
-
-
