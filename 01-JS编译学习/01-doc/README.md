@@ -35,53 +35,33 @@
   - 具体见 [toAST实现-debug流程](../formula/toAST.js)
 
 
+09- 生成AST语法树
+  - 通过tokenizer对JSX进行词法分析==> 分词为一个个的token
+  - 通过walk递归函数 + AST树形结构对象，对不同类型的token进行对象化，形成AST
+  - 具体代码，见 [parse-AST构造过程](../src/index.js)
+
+
+10- AST语法树的遍历
+  - 对每个AST节点进行遍历，具体见 [transfromer- traverse子过程](../src/transformer.js)
+
+
+11- AST语法树的转化
+  - 通过提供traverse的visitor选项方法，来对AST的对象节点树，进行新旧节点对象的替换
+  - 具体代码，见 [transfromer过程](../src/transformer.js)
+
+
+12- 代码生成
+  - 本质上，还是递归下降算法的实现 ，具体见 [codeGenerator](../src/index.js)
+
+
+13- 优先级结合性
+  - 优先级-结合性含义
+  - 正确文法规则：先低后高，由低优先级--> 高优先级
+
+14- 解决左递归和结合性的矛盾
+  - 改进递归下降的原理==> 不包含自身递归的下降算法
+
 
 ## 参考文档：
 
 [在线文档](http://www.zhufengpeixun.com/strong/html/103.15.webpack-compiler2.html#t105.%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90)
-
-
-
-
-结合性错了
-
-结合性
-左结合
-1+2+3
-
-2*3*4
-
-
-右结合
-a=b=c
-
-
-现在这种写法有一个本质的错误!!
-运算符有结合性 乘法和除法 从左往右结合
-加法和减法也是
-本来我们的文法结构应该是这样的写
-如果你的文法是这样的写的,就会结合性是正常的,计算顺序是从左往后算的
-左递归?
-2+3+4
-((2+3)+4)
-add ->  add|add+multiple
-((2*3)*4)
-multiple -> multiple|multiple*NUMBER
-
-如果是如何写样写的,又会现左递归的问题 
-
-如果改成这样,就不会出现左递归
-但是结合性又不对了
-2+3+4
-(2+(3+4)) 计算顺序就错了
-add ->  multiple|multiple+add
-multiple -> NUMBER|NUMBER*multiple
-
-//TODO 非常复杂的解决方案?
-
-
-
-1. 如何解决左递归和结合性的问题?
-2. 写一个命令行工具,你可以命令里实时输入表达式,然后计算结果输出 ,完美支持加减乘除和括号
-3. 转换器 把jsx语法树转换成js语法树
-4. 生成器 把js语法树重新生成源代码
